@@ -1,0 +1,214 @@
+<div class="container mt-4">
+  <div class="card addMargin">
+    <h1>Employee Registration</h1>
+
+    <form>
+      <div class="form-group">
+        <label>Employee Name</label>
+        <input
+          type="text"
+          [(ngModel)]="employeeName"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="employeeName"
+          placeholder="Enter Name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Designation</label>
+        <input
+          type="text"
+          [(ngModel)]="designation"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="designation"
+          placeholder="Enter Designation"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Experience</label>
+        <input
+          type="text"
+          [(ngModel)]="experience"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="experience"
+          placeholder="Enter Experience"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-4" (click)="save()">
+        Save
+      </button>
+    </form>
+  </div>
+
+  <div class="card addMargin">
+    <h1>Search Employee Data by Id</h1>
+
+    <form>
+      <div class="form-group">
+        <label>Enter Employee Id</label>
+        <input
+          type="text"
+          [(ngModel)]="employeeId"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="employeeId"
+          placeholder="Enter Employee Id"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary mt-4"
+        (click)="searchEmployee()"
+      >
+        Search
+      </button>
+    </form>
+    <table class="table">
+      <thead>
+        <h1 *ngIf="!isResultLoaded">Loading.................</h1>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Experience</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ employeeData.id }}</td>
+          <td>{{ employeeData.employeeName }}</td>
+          <td>{{ employeeData.designation }}</td>
+          <td>{{ employeeData.experience }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="setUpdate(employeeData)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="setDelete(employeeData)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card addMargin" style="margin-top: 30px">
+    <h1>Search Employee Data by Name</h1>
+
+    <form>
+      <div class="form-group">
+        <label>Enter Employee Name</label>
+        <input
+          type="text"
+          [(ngModel)]="searchEmployeeName"
+          [ngModelOptions]="{ standalone: true }"
+          class="form-control"
+          id="searchEmployeeName"
+          placeholder="Enter Employee Name"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary mt-4"
+        (click)="searchEmployeeByName()"
+      >
+        Search
+      </button>
+    </form>
+    <table class="table">
+      <thead>
+        <h1 *ngIf="!isResultLoaded">Loading.................</h1>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Experience</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let EmployeeItem of employeeArrByName">
+          <td>{{ EmployeeItem.id }}</td>
+          <td>{{ EmployeeItem.employeeName }}</td>
+          <td>{{ EmployeeItem.designation }}</td>
+          <td>{{ EmployeeItem.experience }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="setUpdate(EmployeeItem)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="setDelete(EmployeeItem)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card addMargin" style="margin: 30px 0px">
+    <h1>
+      Employee Table
+      <button type="button" class="btn btn-danger" (click)="setDeleteAll()">
+        Delete All Data
+      </button>
+    </h1>
+    <table class="table">
+      <thead>
+        <h1 *ngIf="!isResultLoaded">Loading.................</h1>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Experience</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let EmployeeItem of employeeArr">
+          <td>{{ EmployeeItem.id }}</td>
+          <td>{{ EmployeeItem.employeeName }}</td>
+          <td>{{ EmployeeItem.designation }}</td>
+          <td>{{ EmployeeItem.experience }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success"
+              (click)="setUpdate(EmployeeItem)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="setDelete(EmployeeItem)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
